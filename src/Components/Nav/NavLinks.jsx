@@ -1,10 +1,11 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 function NavLinks({ extraStyles }) {
   const data = [
     { linkName: "home", path: "/" },
     { linkName: "about", path: "/about" },
-    { linkName: "create", path: "/create" },
+    { linkName: "create", path: "/new-doc" },
     { linkName: "my documents", path: "/my-docs" },
   ];
 
@@ -14,7 +15,7 @@ function NavLinks({ extraStyles }) {
         const { linkName, path } = item;
         return (
           <li key={linkName}>
-            <a href={path}>{linkName}</a>
+            <NavLink to={path}>{linkName}</NavLink>
           </li>
         );
       })}
