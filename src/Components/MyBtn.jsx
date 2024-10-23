@@ -1,4 +1,5 @@
 import React from "react";
+import { useMyContext } from "../Context/ContextProvider";
 
 function MyBtn({ children, extraStyles }) {
   return (

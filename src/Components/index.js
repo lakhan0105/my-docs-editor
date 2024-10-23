@@ -1,3 +1,6 @@
+import FormRow from "./Auth/InputFormEls/FormRow";
+import Login from "./Auth/Login";
+import Signup from "./Auth/Signup";
 import Hero from "./Hero";
 import MyBtn from "./MyBtn";
 import BigNavbar from "./Nav/BigNavbar";
@@ -16,4 +19,7 @@ export {
   NewDoc,
   RootLayout,
   Navbar,
+  Signup,
+  Login,
+  FormRow,
 };

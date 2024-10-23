@@ -12,7 +12,7 @@ function Navbar() {
     } else {
       setIsEditorPage(false);
     }
-  }, []);
+  }, [isEditorPage, location]);
 
   return (
     <nav className={`bg-${isEditorPage ? "white" : "red"}`}>
