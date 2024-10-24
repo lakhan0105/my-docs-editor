@@ -1,5 +1,12 @@
 import React from "react";
-import { Hero, Login, NewDoc, RootLayout, Signup } from "./Components/index";
+import {
+  Hero,
+  Login,
+  NewDoc,
+  ProtectedAuth,
+  RootLayout,
+  Signup,
+} from "./Components/index";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -13,8 +20,24 @@ const router = createBrowserRouter(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<Hero />} />
       <Route path="/new-doc" element={<NewDoc />}></Route>
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/login" element={<Login />} />
+
+      <Route
+        path="/signup"
+        element={
+          <ProtectedAuth>
+            <Signup />
+          </ProtectedAuth>
+        }
+      />
+
+      <Route
+        path="/login"
+        element={
+          <ProtectedAuth>
+            <Login />
+          </ProtectedAuth>
+        }
+      />
     </Route>
   )
 );

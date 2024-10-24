@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FormRow, MyBtn } from "../index";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useMyContext } from "../../Context/ContextProvider";
 
 function Login() {
+  const { formData, handleChange, loginUser, currUser } = useMyContext();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log("running useeffect in login");
+    if (currUser) {
+      navigate("/");
+    }
+  }, [currUser]);
+
   return (
     <section className="">
       <form className="border border-white/40 rounded-xl max-w-[450px] m-auto mt-32 py-10 px-9 bg-gradient-to-bl from-[#252525] to-[#1a1a1a] backdrop-blur-xl">
@@ -18,6 +29,8 @@ function Login() {
           label={"Email"}
           type={"email"}
           placeholder={"Enter your email"}
+          handleChange={handleChange}
+          value={formData?.email}
         />
 
         <FormRow
@@ -25,12 +38,15 @@ function Login() {
           label={"Password"}
           type={"password"}
           placeholder={"••••••"}
+          handleChange={handleChange}
+          value={formData?.password}
         />
 
         <MyBtn
           extraStyles={
             "rounded-md ring-1 ring-white/20 bg-[#633a97] w-[100%] py-1.5 font-bold text-lg hover:bg-[#7752a5] mt-4"
           }
+          handleMyBtn={loginUser}
         >
           Login
         </MyBtn>

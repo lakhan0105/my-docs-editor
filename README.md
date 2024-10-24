@@ -1,8 +1,14 @@
-# React + Vite
+# IMPORTING THE ENVIRONMENT VARIABLES IN VITE
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- create the .env variables using -> VITE_VARIABLE_NAME = "value"
+- access the variable -> import.meta.env.VITE_VARIABLE_NAME
 
-Currently, two official plugins are available:
+# ENV VARIABLES IN THIS PROJECT
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- VITE_APPWRITE_ENDPOINT
+- VITE_APPWRITE_PROJECT_ID
+
+# Features
+
+- store the currUser data in local storage after login/signup
+- users cannot access login/signup page after loggin in

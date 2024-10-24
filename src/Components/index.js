@@ -9,6 +9,7 @@ import NavBtns from "./Nav/NavBtns";
 import NavLinks from "./Nav/NavLinks";
 import NewDoc from "./NewDoc";
 import RootLayout from "./RootLayout";
+import ProtectedAuth from "./Auth/ProtectedAuth";
 
 export {
   NavLinks,
@@ -22,4 +23,5 @@ export {
   Signup,
   Login,
   FormRow,
+  ProtectedAuth,
 };
