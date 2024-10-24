@@ -19,7 +19,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<Hero />} />
-      <Route path="/new-doc" element={<NewDoc />}></Route>
+      <Route path="/new-doc/:id" element={<NewDoc />}></Route>
 
       <Route
         path="/signup"

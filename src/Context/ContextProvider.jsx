@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { createContext } from "react";
-import { Client, Account } from "appwrite";
+import { Client, Account, Databases } from "appwrite";
 import { v4 as uuidv4 } from "uuid";
 import { getFromLS, setLS } from "../utils/localStorage";
+import { useNavigate } from "react-router-dom";
 
 const projectId = import.meta.env.VITE_APPWRITE_PROJECT_ID;
 const endpoint = import.meta.env.VITE_APPWRITE_ENDPOINT;
+const databaseId = import.meta.env.VITE_APPWRITE_DATABASE_ID;
+const collectionId = import.meta.env.VITE_APPWRITE_COLLECTION_ID;
 const client = new Client().setEndpoint(endpoint).setProject(projectId);
 
 const myContext = createContext();
@@ -70,9 +73,38 @@ function ContextProvider({ children }) {
     }
   };
 
+  // function to create new document
+  const saveNewDoc = async (docData, navigate) => {
+    console.log(docData);
+    const databases = new Databases(client);
+    try {
+      const result = await databases.createDocument(
+        databaseId, // databaseId
+        collectionId, // collectionId
+        docData?.docId, // documentId
+        docData // data
+      );
+
+      if (result) {
+        console.log("saved ");
+        console.log(result);
+        navigate("/");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <myContext.Provider
-      value={{ formData, handleChange, createUser, currUser, loginUser }}
+      value={{
+        formData,
+        handleChange,
+        createUser,
+        currUser,
+        loginUser,
+        saveNewDoc,
+      }}
     >
       {children}
     </myContext.Provider>

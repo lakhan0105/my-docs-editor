@@ -1,11 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 function NavLinks({ extraStyles }) {
   const data = [
     { linkName: "home", path: "/" },
     { linkName: "about", path: "/about" },
-    { linkName: "create", path: "/new-doc" },
+    { linkName: "create", path: `/new-doc/${uuidv4()}` },
     { linkName: "my documents", path: "/my-docs" },
   ];
 
