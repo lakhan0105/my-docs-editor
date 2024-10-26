@@ -1,11 +1,12 @@
 import React from "react";
 import {
+  Doc,
   Hero,
   Login,
-  NewDoc,
   ProtectedAuth,
   RootLayout,
   Signup,
+  UserDocuments,
 } from "./Components/index";
 import {
   createBrowserRouter,
@@ -19,7 +20,9 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<Hero />} />
-      <Route path="/new-doc/:id" element={<NewDoc />}></Route>
+      <Route path="/doc/new" element={<Doc />}></Route>
+      <Route path="/doc/:id" element={<Doc />}></Route>
+      <Route path="/user-docs" element={<UserDocuments />}></Route>
 
       <Route
         path="/signup"

@@ -7,7 +7,8 @@ function Navbar() {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname.startsWith("/new-doc")) {
+    // change the style of the navrbar if the path starts with /doc
+    if (location.pathname.startsWith("/doc")) {
       setIsEditorPage(true);
     } else {
       setIsEditorPage(false);

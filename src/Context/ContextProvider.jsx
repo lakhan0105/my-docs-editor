@@ -75,7 +75,6 @@ function ContextProvider({ children }) {
 
   // function to create new document
   const saveNewDoc = async (docData, navigate) => {
-    console.log(docData);
     const databases = new Databases(client);
     try {
       const result = await databases.createDocument(
@@ -86,8 +85,6 @@ function ContextProvider({ children }) {
       );
 
       if (result) {
-        console.log("saved ");
-        console.log(result);
         navigate("/");
       }
     } catch (error) {
@@ -104,6 +101,9 @@ function ContextProvider({ children }) {
         currUser,
         loginUser,
         saveNewDoc,
+        client,
+        databaseId,
+        collectionId,
       }}
     >
       {children}

@@ -6,8 +6,8 @@ function NavLinks({ extraStyles }) {
   const data = [
     { linkName: "home", path: "/" },
     { linkName: "about", path: "/about" },
-    { linkName: "create", path: `/new-doc/${uuidv4()}` },
-    { linkName: "my documents", path: "/my-docs" },
+    { linkName: "create", path: `/doc/new` },
+    { linkName: "my documents", path: "/user-docs" },
   ];
 
   return (

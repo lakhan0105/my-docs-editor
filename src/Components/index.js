@@ -7,9 +7,10 @@ import BigNavbar from "./Nav/BigNavbar";
 import Navbar from "./Nav/Navbar";
 import NavBtns from "./Nav/NavBtns";
 import NavLinks from "./Nav/NavLinks";
-import NewDoc from "./NewDoc";
+import Doc from "./Doc";
 import RootLayout from "./RootLayout";
 import ProtectedAuth from "./Auth/ProtectedAuth";
+import UserDocuments from "./UserDocuments";
 
 export {
   NavLinks,
@@ -17,11 +18,12 @@ export {
   MyBtn,
   BigNavbar,
   Hero,
-  NewDoc,
+  Doc,
   RootLayout,
   Navbar,
   Signup,
   Login,
   FormRow,
   ProtectedAuth,
+  UserDocuments,
 };
