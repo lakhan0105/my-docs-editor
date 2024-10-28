@@ -13,7 +13,8 @@ function Doc() {
   const [title, setTitle] = useState("");
   const [editorContentState, setEditorContentState] = useState("");
 
-  const { saveNewDoc, client, databaseId, collectionId } = useMyContext();
+  const { saveNewDoc, updateAndSave, client, databaseId, collectionId } =
+    useMyContext();
   const navigate = useNavigate();
 
   const [docData, setDocData] = useState({
@@ -77,8 +78,12 @@ function Doc() {
       editorContent: editorContentState,
     };
 
-    // pass the updated values to the saveNewDoc to save the new document in the appwrite database
-    saveNewDoc(updatedDocData, navigate);
+    if (id) {
+      updateAndSave(updatedDocData, navigate);
+    } else {
+      // pass the updated values to the saveNewDoc to save the new document in the appwrite database
+      saveNewDoc(updatedDocData, navigate);
+    }
   }
 
   return (

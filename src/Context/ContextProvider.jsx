@@ -4,7 +4,6 @@ import { createContext } from "react";
 import { Client, Account, Databases } from "appwrite";
 import { v4 as uuidv4 } from "uuid";
 import { getFromLS, setLS } from "../utils/localStorage";
-import { useNavigate } from "react-router-dom";
 
 const projectId = import.meta.env.VITE_APPWRITE_PROJECT_ID;
 const endpoint = import.meta.env.VITE_APPWRITE_ENDPOINT;
@@ -57,7 +56,6 @@ function ContextProvider({ children }) {
   // function to login the user
   const loginUser = async (e) => {
     e.preventDefault();
-    console.log("running login user function");
     const account = new Account(client);
 
     try {
@@ -92,6 +90,28 @@ function ContextProvider({ children }) {
     }
   };
 
+  // function to update and save the document (which is already been saved in the backend)
+  const updateAndSave = async (updatedDocData, navigate) => {
+    const databases = new Databases(client);
+    console.log("running update and save function");
+    console.log(updatedDocData);
+
+    try {
+      const result = await databases.updateDocument(
+        databaseId, // databaseId
+        collectionId, // collectionId
+        updatedDocData?.docId, // documentId
+        updatedDocData // data (optional)
+      );
+      if (result) {
+        navigate("/");
+        return result;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <myContext.Provider
       value={{
@@ -101,6 +121,7 @@ function ContextProvider({ children }) {
         currUser,
         loginUser,
         saveNewDoc,
+        updateAndSave,
         client,
         databaseId,
         collectionId,
