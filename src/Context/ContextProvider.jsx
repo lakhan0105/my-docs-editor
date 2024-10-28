@@ -53,24 +53,6 @@ function ContextProvider({ children }) {
     }
   }
 
-  // function to login the user
-  const loginUser = async (e) => {
-    e.preventDefault();
-    const account = new Account(client);
-
-    try {
-      const result = await account.createEmailPasswordSession(
-        formData.email, // email
-        formData.password // password
-      );
-
-      if (result) setCurrUser(result);
-      // useEffect will setLS the curr user after the above code
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   // function to create new document
   const saveNewDoc = async (docData, navigate) => {
     const databases = new Databases(client);
@@ -116,10 +98,11 @@ function ContextProvider({ children }) {
     <myContext.Provider
       value={{
         formData,
+        setFormData,
+        currUser,
+        setCurrUser,
         handleChange,
         createUser,
-        currUser,
-        loginUser,
         saveNewDoc,
         updateAndSave,
         client,

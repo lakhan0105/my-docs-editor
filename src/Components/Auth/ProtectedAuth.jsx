@@ -6,7 +6,7 @@ function ProtectedAuth({ children }) {
   const { currUser } = useMyContext();
 
   // if the user has already loggedin do not let him go the the login/signup page
-  if (!currUser) {
+  if (currUser) {
     return <>{children}</>;
   }
 

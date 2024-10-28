@@ -3,6 +3,7 @@ import {
   Doc,
   Hero,
   Login,
+  NoAccessAfterLogin,
   ProtectedAuth,
   RootLayout,
   Signup,
@@ -22,23 +23,31 @@ const router = createBrowserRouter(
       <Route index element={<Hero />} />
       <Route path="/doc/new" element={<Doc />}></Route>
       <Route path="/doc/:id" element={<Doc />}></Route>
-      <Route path="/user-docs" element={<UserDocuments />}></Route>
+
+      <Route
+        path="/user-docs"
+        element={
+          <ProtectedAuth>
+            <UserDocuments />
+          </ProtectedAuth>
+        }
+      ></Route>
 
       <Route
         path="/signup"
         element={
-          <ProtectedAuth>
+          <NoAccessAfterLogin>
             <Signup />
-          </ProtectedAuth>
+          </NoAccessAfterLogin>
         }
       />
 
       <Route
         path="/login"
         element={
-          <ProtectedAuth>
+          <NoAccessAfterLogin>
             <Login />
-          </ProtectedAuth>
+          </NoAccessAfterLogin>
         }
       />
     </Route>

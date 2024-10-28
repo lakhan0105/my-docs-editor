@@ -11,6 +11,7 @@ import Doc from "./Doc";
 import RootLayout from "./RootLayout";
 import ProtectedAuth from "./Auth/ProtectedAuth";
 import UserDocuments from "./UserDocuments";
+import NoAccessAfterLogin from "./Auth/NoAccessAfterLogin";
 
 export {
   NavLinks,
@@ -26,4 +27,5 @@ export {
   FormRow,
   ProtectedAuth,
   UserDocuments,
+  NoAccessAfterLogin,
 };

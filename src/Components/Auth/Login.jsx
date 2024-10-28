@@ -2,17 +2,33 @@ import React, { useEffect, useState } from "react";
 import { FormRow, MyBtn } from "../index";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useMyContext } from "../../Context/ContextProvider";
+import { Account } from "appwrite";
 
 function Login() {
-  const { formData, handleChange, loginUser, currUser } = useMyContext();
+  const { formData, handleChange, currUser, setCurrUser, client } =
+    useMyContext();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log("running useeffect in login");
-    if (currUser) {
-      navigate("/");
+  // function to login the user
+  const loginUser = async (e) => {
+    e.preventDefault();
+    const account = new Account(client);
+
+    try {
+      const result = await account.createEmailPasswordSession(
+        formData.email, // email
+        formData.password // password
+      );
+
+      if (result) {
+        setCurrUser(result);
+        navigate("/");
+      }
+      // useEffect will setLS the curr user after the above code
+    } catch (error) {
+      console.log(error);
     }
-  }, [currUser]);
+  };
 
   return (
     <section className="">
