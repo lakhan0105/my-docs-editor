@@ -27,7 +27,11 @@ function LogoutBtn() {
   }
 
   if (currUser) {
-    return <MyBtn handleMyBtn={handleLogout}>Logout</MyBtn>;
+    return (
+      <MyBtn handleMyBtn={handleLogout} extraStyles={`rounded-lg w-full`}>
+        Logout
+      </MyBtn>
+    );
   }
 }
 

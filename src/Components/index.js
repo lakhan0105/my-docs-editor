@@ -12,6 +12,8 @@ import RootLayout from "./RootLayout";
 import ProtectedAuth from "./Auth/ProtectedAuth";
 import UserDocuments from "./UserDocuments";
 import NoAccessAfterLogin from "./Auth/NoAccessAfterLogin";
+import AccountBtn from "./Nav/AccountBtn";
+import AccountCard from "./Nav/AccountCard";
 
 export {
   NavLinks,
@@ -28,4 +30,6 @@ export {
   ProtectedAuth,
   UserDocuments,
   NoAccessAfterLogin,
+  AccountBtn,
+  AccountCard,
 };

@@ -11,7 +11,7 @@ function ProtectedAuth({ children }) {
   }
 
   // if currUser is already present, take him back to "/" if he goes to "/login" or "/signup"
-  return <Navigate to={"/"} />;
+  // return <Navigate to={"/"} />;
 }
 
 export default ProtectedAuth;

@@ -7,7 +7,6 @@ function NavLinks({ extraStyles }) {
 
   const data = [
     { linkName: "home", path: "/" },
-    { linkName: "about", path: "/about" },
     { linkName: "create", path: `/doc/new` },
     { linkName: "my documents", path: "/user-docs" },
   ];
@@ -16,7 +15,7 @@ function NavLinks({ extraStyles }) {
   const filteredData = currUser
     ? data
     : data?.filter((item) => {
-        if (item.linkName !== "my documents") {
+        if (item.linkName !== "my documents" && item.linkName !== "create") {
           return item;
         }
       });

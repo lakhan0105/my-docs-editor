@@ -4,7 +4,7 @@ import "react-quill/dist/quill.snow.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { getFromLS } from "../utils/localStorage";
 import { useMyContext } from "../Context/ContextProvider";
-import { Databases } from "appwrite";
+import { Databases, Permission, Role } from "appwrite";
 import { v4 as uuidv4 } from "uuid";
 
 function Doc() {
@@ -37,11 +37,13 @@ function Doc() {
       return result;
     } catch (error) {
       console.log(error);
+      console.log("error code is:", error.code);
     }
   };
 
   // fetch the data if its present when this page loads
   useEffect(() => {
+    console.log(docData);
     const loadDoc = async () => {
       if (id) {
         try {

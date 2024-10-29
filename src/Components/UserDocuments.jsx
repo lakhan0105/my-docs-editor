@@ -44,8 +44,9 @@ function UserDocuments() {
   };
 
   useEffect(() => {
-    fetchUserDocs();
-    userDocs;
+    if (currUser) {
+      fetchUserDocs();
+    }
   }, [currUser]);
 
   if (emptyState) {

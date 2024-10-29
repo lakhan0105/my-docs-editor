@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { createContext } from "react";
-import { Client, Account, Databases } from "appwrite";
+import { Client, Account, Databases, Permission, Role } from "appwrite";
 import { v4 as uuidv4 } from "uuid";
 import { getFromLS, setLS } from "../utils/localStorage";
 
@@ -56,12 +56,22 @@ function ContextProvider({ children }) {
   // function to create new document
   const saveNewDoc = async (docData, navigate) => {
     const databases = new Databases(client);
+
+    console.log(docData);
     try {
       const result = await databases.createDocument(
         databaseId, // databaseId
         collectionId, // collectionId
         docData?.docId, // documentId
-        docData // data
+        docData, // data
+
+        // when the doc is created only the user has all permissions
+        [
+          Permission.write(Role.user(docData.userId)),
+          Permission.read(Role.user(docData.userId)),
+          Permission.update(Role.user(docData.userId)),
+          Permission.delete(Role.user(docData.userId)),
+        ]
       );
 
       if (result) {
@@ -75,15 +85,20 @@ function ContextProvider({ children }) {
   // function to update and save the document (which is already been saved in the backend)
   const updateAndSave = async (updatedDocData, navigate) => {
     const databases = new Databases(client);
-    console.log("running update and save function");
-    console.log(updatedDocData);
 
     try {
       const result = await databases.updateDocument(
         databaseId, // databaseId
         collectionId, // collectionId
         updatedDocData?.docId, // documentId
-        updatedDocData // data (optional)
+        updatedDocData, // data (optional)
+        // when the doc is created only the user has all permissions
+        [
+          Permission.write(Role.user(docData.userId)),
+          Permission.read(Role.user(docData.userId)),
+          Permission.update(Role.user(docData.userId)),
+          Permission.delete(Role.user(docData.userId)),
+        ]
       );
       if (result) {
         navigate("/");
