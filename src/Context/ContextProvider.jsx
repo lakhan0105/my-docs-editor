@@ -53,62 +53,6 @@ function ContextProvider({ children }) {
     }
   }
 
-  // function to create new document
-  const saveNewDoc = async (docData, navigate) => {
-    const databases = new Databases(client);
-
-    console.log(docData);
-    try {
-      const result = await databases.createDocument(
-        databaseId, // databaseId
-        collectionId, // collectionId
-        docData?.docId, // documentId
-        docData, // data
-
-        // when the doc is created only the user has all permissions
-        [
-          Permission.write(Role.user(docData.userId)),
-          Permission.read(Role.user(docData.userId)),
-          Permission.update(Role.user(docData.userId)),
-          Permission.delete(Role.user(docData.userId)),
-        ]
-      );
-
-      if (result) {
-        navigate("/");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  // function to update and save the document (which is already been saved in the backend)
-  const updateAndSave = async (updatedDocData, navigate) => {
-    const databases = new Databases(client);
-
-    try {
-      const result = await databases.updateDocument(
-        databaseId, // databaseId
-        collectionId, // collectionId
-        updatedDocData?.docId, // documentId
-        updatedDocData, // data (optional)
-        // when the doc is created only the user has all permissions
-        [
-          Permission.write(Role.user(docData.userId)),
-          Permission.read(Role.user(docData.userId)),
-          Permission.update(Role.user(docData.userId)),
-          Permission.delete(Role.user(docData.userId)),
-        ]
-      );
-      if (result) {
-        navigate("/");
-        return result;
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   return (
     <myContext.Provider
       value={{
@@ -118,8 +62,6 @@ function ContextProvider({ children }) {
         setCurrUser,
         handleChange,
         createUser,
-        saveNewDoc,
-        updateAndSave,
         client,
         databaseId,
         collectionId,
